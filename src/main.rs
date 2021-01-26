@@ -5,6 +5,7 @@ use std::time::Duration;
 async fn main() {
     let consumer: BaseConsumer = ClientConfig::new()
     .set("bootstrap.servers", "kafka:9092")
+    .set("group.id","Hopin")
     .create()
     .expect("Producer creation error");
 
