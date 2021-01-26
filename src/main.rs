@@ -3,8 +3,10 @@ use rdkafka::consumer::BaseConsumer;
 use std::time::Duration;
 #[tokio::main]
 async fn main() {
+
+    
     let consumer: BaseConsumer = ClientConfig::new()
-    .set("bootstrap.servers", "kafka:9092")
+    .set("bootstrap.servers", "localhost:9092")
     .set("group.id","Hopin")
     .create()
     .expect("Producer creation error");
