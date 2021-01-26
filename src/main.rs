@@ -11,8 +11,10 @@ async fn main() {
 
     loop 
     {
-        let message = consumer.poll(Duration::from_secs(1)).unwrap().unwrap();
-        let message = message.detach().payload().map(|s|String::from_utf8(s.to_vec()).unwrap()).unwrap_or_default();
-        println!("obtained{:?}",message);
+        if let Some(Ok(message)) = consumer.poll(Duration::from_secs(1))
+        {
+            let message = message.detach().payload().map(|s|String::from_utf8(s.to_vec()).unwrap()).unwrap_or_default();
+            println!("obtained{:?}",message);
+        }
     }
 }
