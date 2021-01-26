@@ -29,7 +29,7 @@ async fn main() {
                     Err(error_type) => println!("error obtainign message {:?}",error_type)
                 }
             },
-            None => println!("none obtained")
+            None => ()
         }
 
     }
