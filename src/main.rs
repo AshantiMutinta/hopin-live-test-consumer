@@ -1,6 +1,7 @@
 use rdkafka::{Message,ClientConfig};
 use rdkafka::consumer::BaseConsumer;
 use std::time::Duration;
+use rdkafka::consumer::Consumer;
 #[tokio::main]
 async fn main() {
 
@@ -11,6 +12,7 @@ async fn main() {
     .create()
     .expect("Producer creation error");
 
+    consumer.subscribe(&["hopin-live"]).unwrap();
     loop 
     {
         match consumer.poll(Duration::from_secs(1))
