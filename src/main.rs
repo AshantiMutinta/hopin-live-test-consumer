@@ -11,10 +11,22 @@ async fn main() {
 
     loop 
     {
-        if let Some(Ok(message)) = consumer.poll(Duration::from_secs(1))
+        match consumer.poll(Duration::from_secs(1))
         {
-            let message = message.detach().payload().map(|s|String::from_utf8(s.to_vec()).unwrap()).unwrap_or_default();
-            println!("obtained{:?}",message);
+            Some(message_type) =>
+            {
+                match message_type
+                {
+                    Ok(message) =>
+                    {
+                        let message = message.detach().payload().map(|s|String::from_utf8(s.to_vec()).unwrap()).unwrap_or_default();
+                       println!("obtained{:?}",message);
+                    },
+                    Err(error_type) => println!("error obtainign message {:?}",error_type)
+                }
+            },
+            None => println!("none obtained")
         }
+
     }
 }
