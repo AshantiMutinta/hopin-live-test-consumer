@@ -164,6 +164,7 @@ dependencies = [
 name = "hopin-live-test-consumer"
 version = "0.1.0"
 dependencies = [
+ "futures",
  "rdkafka",
  "tokio 1.1.0",
 ]
